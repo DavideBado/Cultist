@@ -1,0 +1,17 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HiScoreMenu : MonoBehaviour
+{
+    List<int> HIscoreList = new List<int>();
+    public GameObject HiScoreCanvas;
+    public void OpenHiScore()
+    {
+        if(HIscoreList.Count > 0) // Se ci sono punteggi salvati
+        {
+            HiScoreCanvas.SetActive(true); // Accendi la classifica
+          
+        }
+    }
+}
