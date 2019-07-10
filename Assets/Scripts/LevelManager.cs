@@ -25,14 +25,19 @@ public class LevelManager : MonoBehaviour
     }
     public void LoadPositions() // Carica
     {
-       Clear(); // Prima togli la roba vecchia
        string json = PlayerPrefs.GetString("Cultists"); // Ora vai a prendere la stringa in memoria
          cultistsData = JsonUtility.FromJson<CultistsData>(json); // Converti da stringa a CultistData
 
-        foreach (var _dataposition in cultistsData.CultistsPosition) // Dovrebbe esserci una lista di vettori, ecco per ogni vettore della lista
+        //foreach (var _dataposition in cultistsData.CultistsPosition) // Dovrebbe esserci una lista di vettori, ecco per ogni vettore della lista
+        //{
+        //    GameObject _cultist = Instantiate(Cultistpref, _dataposition, Quaternion.identity); // Metti un cultista
+        //    _cultist.transform.parent = GetComponent<GameManager>().Level.transform;
+        //}
+        for (int i = 0; i < cultistsData.CultistsPosition.Count; i++)
         {
-            Instantiate(Cultistpref, _dataposition, Quaternion.identity); // Metti un cultista
+           GetComponent<GameManager>().Cultists[i].transform.position = cultistsData.CultistsPosition[i];          
         }
+       Clear(); // Prima togli la roba vecchia
     }
 
     public void Clear() // Pulisci la scena
@@ -40,7 +45,7 @@ public class LevelManager : MonoBehaviour
         List<Cultist> cultists = FindObjectsOfType<Cultist>().ToList(); // Trova un po' tutti i cultisti
         foreach (var _cultist in cultists) // Ora che li hai trovati
         {
-            Destroy(_cultist.gameObject); // Eliminali
+            _cultist.gameObject.SetActive(false); // Eliminali
         }
 
     }

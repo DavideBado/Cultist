@@ -11,6 +11,10 @@ public class Target : MonoBehaviour
     List<Cultist> cultistsInScene = new List<Cultist>();
     List<Cultist> cultistsInArea = new List<Cultist>();
 
+    private void OnEnable()
+    {
+        cultistsInArea.Clear();
+    }
     private void UpdateTargets(Vector3 targetPosition) // Aggiorna la destinazione dei cultisti
     {
         navAgents = FindObjectsOfType(typeof(NavMeshAgent)) as NavMeshAgent[]; // Cerca tutti i NavMeshAgent, in questo caso i cultisti
@@ -39,12 +43,23 @@ public class Target : MonoBehaviour
         Debug.DrawLine(targetMarker.position, targetMarker.position + Vector3.up * 5, Color.red);
     }
 
-    private void OnTriggerEnter(Collider other) // Se un oggetto entra nell'area di arrivo
+    private void OnTriggerStay(Collider other) // Se un oggetto entra nell'area di arrivo
     {
         UpdateCultists(); // Controlla quanti cultisti ci sono in scena
         if (other.GetComponent<Cultist>() != null) // Se l'oggetto che è appena entrato è un cultista
         {
-            cultistsInArea.Add(other.GetComponent<Cultist>()); // Aggiungilo alla lista di cultisti nel traguardo
+            bool CanAddThisCultist = true;
+            foreach (Cultist _cultist in cultistsInArea)
+            {
+                if(other.GetComponent<Cultist>() == _cultist)
+                {
+                    CanAddThisCultist = false;
+                }
+            }
+            if (CanAddThisCultist)
+            {
+                cultistsInArea.Add(other.GetComponent<Cultist>()); // Aggiungilo alla lista di cultisti nel traguardo
+            }
 
             if (cultistsInArea.Count == cultistsInScene.Count && cultistsInScene.Count > 1) // Se i cultisti nel traguardo sono tutti i cultisti in scena
             {
@@ -52,14 +67,13 @@ public class Target : MonoBehaviour
                 GetComponentInParent<ScoreManager>().Win(cultistsInArea.Count); // Fai partire il finale di vittoria            
                 foreach (var item in cultistsInScene)
                 {
-                    Destroy(item.gameObject);
+                    item.gameObject.SetActive(false);
                 }
                 gameObject.SetActive(false); // Spegniti
             }
         }
     }   
-        
-    
+            
     private void OnTriggerExit(Collider other)
     {
         UpdateCultists(); // Aggiorna i cultisti in scena
@@ -71,6 +85,7 @@ public class Target : MonoBehaviour
 
     void UpdateCultists()
     {
+        cultistsInScene.Clear();
         cultistsInScene = FindObjectsOfType<Cultist>().ToList(); // Trova tutti i cultisti in scena
     }
 }

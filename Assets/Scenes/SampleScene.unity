@@ -6987,6 +6987,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &355056253 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5661198691265052358, guid: 55672e6be408ff7409f6a51c93e2a1cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5661198691534812051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc5d6eb74171434f8d8dce6be45daf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &358048545
 GameObject:
   m_ObjectHideFlags: 0
@@ -24875,6 +24887,14 @@ MonoBehaviour:
   Level: {fileID: 1690855069}
   Target: {fileID: 1781563476}
   NewGame: 0
+  Cultists:
+  - {fileID: 355056253}
+  - {fileID: 965940378}
+  - {fileID: 1697743433}
+  - {fileID: 472979447}
+  - {fileID: 699638428}
+  - {fileID: 518751067}
+  - {fileID: 611938449}
 --- !u!1 &1139218716
 GameObject:
   m_ObjectHideFlags: 0
@@ -36012,6 +36032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604757c73502c414fb06877bbb691bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 1130847458}
   levelManager: {fileID: 1130847457}
 --- !u!1 &1697743426
 GameObject:

@@ -5,12 +5,17 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    GameManager gameManager;
     public Canvas WinCanvas;
     public GameObject Level;
     float time = 0;
     public bool Ingame = false;
     public Text Cultists, TimerText, TotalScore;
-  
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
     // Update is called once per frame
     void Update()
     {       

@@ -11,7 +11,7 @@ public class Cultist : MonoBehaviour
     {
         if (NavMesh.SamplePosition(transform.position, out hit, 0.1f, 8)) // Se sei sopra una zona trappola
         {
-            Destroy(gameObject); // Muori
+            gameObject.SetActive(false); // Muori
         }
     }    
 }

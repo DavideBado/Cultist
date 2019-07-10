@@ -6,6 +6,7 @@ public class HiScoreMenu : MonoBehaviour
 {
     List<int> HIscoreList = new List<int>();
     public GameObject HiScoreCanvas;
+   
     public void OpenHiScore()
     {
         if(HIscoreList.Count > 0) // Se ci sono punteggi salvati

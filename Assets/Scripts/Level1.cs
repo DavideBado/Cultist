@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Level1 : MonoBehaviour
 {
+    public GameManager manager;
     public LevelManager levelManager;
     private void OnEnable() // Quando ti attivi
     {
         Save();
-       
+        manager.CultistOnOff(true);
     }
 
     private void OnDisable() // Quando ti spegni
